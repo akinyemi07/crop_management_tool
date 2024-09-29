@@ -3,22 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crop Prediction</title>
+    <title>Crop Management Tool</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Crop Management Tool</h1>
-    <form action="/predict_crop" method="POST">
-        <label for="soil_type">Select Soil Type:</label>
-        <select name="soil_type" id="soil_type">
-            <option value="Loam">Loam</option>
-            <option value="Clay">Clay</option>
-            <option value="Sand">Sand</option>
-        </select>
-        <br><br>
-        <input type="submit" value="Predict Crop">
-    </form>
+    <div class="container">
+        <h1 class="text-center my-4">Crop Management Tool</h1>
+        <p>Predict the best crop to plant based on current weather and soil type.</p>
+
+        <form id="crop-form" method="POST" action="/predict_crop">
+            <div class="form-group">
+                <label for="city">Enter your city:</label>
+                <input type="text" class="form-control" id="city" name="city" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="soil-type">Select Soil Type:</label>
+                <select id="soil-type" name="soil_type" class="form-control">
+                    <option value="Loam">Loam</option>
+                    <option value="Clay">Clay</option>
+                    <option value="Sand">Sand</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Get Prediction</button>
+        </form>
+
+        <!-- Feedback form -->
+        <div class="mt-4">
+            <h3>Provide Feedback</h3>
+            <form id="feedback-form" method="POST" action="/feedback">
+                <div class="form-group">
+                    <textarea class="form-control" name="feedback" rows="4" placeholder="Your feedback"></textarea>
+                </div>
+                <button type="submit" class="btn btn-success">Submit Feedback</button>
+            </form>
+        </div>
+
+        <!-- Chart.js Placeholder -->
+        <div class="my-5">
+            <h3>Crop Prediction Data</h3>
+            <canvas id="cropChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Example Chart.js
+        var ctx = document.getElementById('cropChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Wheat', 'Barley', 'Carrots', 'Rice'],
+                datasets: [{
+                    label: 'Crop Suitability',
+                    data: [10, 15, 7, 20],
+                    backgroundColor: ['red', 'blue', 'green', 'yellow'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
 </body>
 </html>
-
 
