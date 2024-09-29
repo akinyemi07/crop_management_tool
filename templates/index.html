@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Crop Management Tool</h1>
+    <form action="/predict_crop" method="POST">
+        <label for="soil_type">Select Soil Type:</label>
+        <select name="soil_type" id="soil_type">
+            <option value="Loam">Loam</option>
+            <option value="Clay">Clay</option>
+            <option value="Sand">Sand</option>
+        </select>
+        <br><br>
+        <input type="submit" value="Predict Crop">
+    </form>
+</body>
+</html>
+
+

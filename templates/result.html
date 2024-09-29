@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Crop Prediction Result</h1>
+    <p>Based on the current weather ({{ weather }}) and soil type ({{ soil }}), we recommend planting: <strong>{{ recommended_crop }}</strong></p>
+    <a href="/">Go back</a>
+</body>
+</html>
+
